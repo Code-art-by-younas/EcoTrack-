@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EcoTrack helps you estimate, understand and reduce your everyday carbon footprint.">
+  <title>EcoTrack — Small steps. Lighter footprint.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#"><span class="brand-icon">e</span><span>eco<span>track</span></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav">
+        <a class="side-link active" href="#overview" data-page="overview"><span>◫</span> Overview</a>
+        <a class="side-link" href="#calculator" data-page="calculator"><span>⌁</span> Footprint calculator</a>
+        <a class="side-link" href="#insights" data-page="insights"><span>◉</span> Insights & tips</a>
+      </nav>
+      <div class="sidebar-card">
+        <div class="leaf-orbit">✳</div>
+        <p>Every small action<br>makes a difference.</p>
+        <span>YOUR PLANET. YOUR IMPACT.</span>
+      </div>
+      <div class="sidebar-bottom"><span class="online-dot"></span> Your data stays on this device</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+        <div><div class="top-eyebrow">PERSONAL SUSTAINABILITY DASHBOARD</div><h1 id="pageTitle">Your impact, at a glance</h1></div>
+        <div class="top-actions"><span class="today-pill" id="todayDate"></span><button class="avatar" title="Local demo profile">Y</button></div>
+      </header>
+
+      <section class="page-section" id="overview">
+        <div class="welcome-row">
+          <div><p class="muted">MONITOR YOUR EVERYDAY HABITS</p><h2>Make room for a <em>greener</em> tomorrow.</h2><p class="welcome-sub">Track your lifestyle impact, discover what matters most, and build better habits one day at a time.</p></div>
+          <div class="welcome-art"><div class="sun"></div><div class="hill hill-back"></div><div class="hill hill-front"></div><div class="plant">♧</div><span>LIVE LIGHTER</span></div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card main-stat"><div class="stat-top"><span>ESTIMATED MONTHLY FOOTPRINT</span><span class="stat-icon">↗</span></div><div class="stat-value"><strong id="monthlyTotal">0.0</strong><small>kg CO₂e</small></div><div class="stat-foot"><span class="status-dot"></span><span id="monthlyNote">Based on your latest entries</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span>DAILY AVERAGE</span><span class="stat-icon">◷</span></div><div class="stat-value"><strong id="dailyAverage">0.0</strong><small>kg CO₂e</small></div><div class="stat-foot">Your estimated daily impact</div></article>
+          <article class="stat-card"><div class="stat-top"><span>LOGGED ACTIVITIES</span><span class="stat-icon">⌁</span></div><div class="stat-value"><strong id="activityCount">0</strong><small>entries</small></div><div class="stat-foot">Small steps add up</div></article>
+          <article class="stat-card"><div class="stat-top"><span>YOUR REDUCTION GOAL</span><span class="stat-icon">◎</span></div><div class="stat-value"><strong id="goalValue">20</strong><small>%</small></div><div class="goal-track"><span id="goalProgress"></span></div><div class="stat-foot" id="goalCaption">Set a baseline to track progress</div></article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="panel chart-panel">
+            <div class="panel-heading"><div><span class="panel-kicker">YOUR FOOTPRINT</span><h3>Impact overview</h3></div><select id="chartPeriod" class="select-small"><option value="week">Last 7 days</option><option value="month">This month</option></select></div>
+            <div class="chart-legend"><span><i></i> CO₂ emissions (kg)</span><b id="chartTotal">0 kg total</b></div>
+            <div class="chart-wrap"><canvas id="impactChart" aria-label="Carbon footprint chart" role="img"></canvas><div class="chart-empty" id="chartEmpty">Log an activity to see your impact chart.</div></div>
+          </article>
+          <article class="panel breakdown-panel">
+            <div class="panel-heading"><div><span class="panel-kicker">WHERE IT COMES FROM</span><h3>Category breakdown</h3></div><span class="mini-badge">ESTIMATE</span></div>
+            <div class="donut-area"><div class="donut" id="donut"><div><strong id="donutTotal">0</strong><span>kg CO₂e</span></div></div><div class="legend-list" id="categoryLegend"></div></div>
+            <p class="panel-note">Your biggest category is a good place to start making changes.</p>
+          </article>
+        </div>
+
+        <div class="lower-grid">
+          <article class="panel activity-panel"><div class="panel-heading"><div><span class="panel-kicker">RECENT TRACKING</span><h3>Latest activities</h3></div><button class="text-btn" data-goto="calculator">+ Add activity</button></div><div id="recentActivities" class="recent-list"></div></article>
+          <article class="panel tip-panel"><div class="tip-icon">✳</div><span class="panel-kicker">TODAY'S ECO TIP</span><h3 id="dailyTipTitle">Choose a lighter commute</h3><p id="dailyTipText">Walking, cycling or sharing a ride can reduce transport emissions and make your daily routine healthier.</p><button class="text-btn" data-goto="insights">Explore more tips ↗</button></article>
+        </div>
+      </section>
+
+      <section class="page-section hidden" id="calculator">
+        <div class="page-intro"><span class="panel-kicker">ACTIVITY TRACKER</span><h2>Calculate your <em>impact.</em></h2><p>Add an everyday activity to estimate its carbon footprint. Values are simplified educational estimates, not official measurements.</p></div>
+        <div class="calculator-layout">
+          <article class="panel calculator-panel">
+            <div class="panel-heading"><div><span class="panel-kicker">NEW ENTRY</span><h3>Log an activity</h3></div><span class="step-tag">01 / INPUT</span></div>
+            <form id="activityForm">
+              <label class="field-label" for="activityCategory">Activity category</label>
+              <div class="category-options" id="categoryOptions">
+                <button type="button" class="category-option chosen" data-category="Transport"><span>↗</span> Transport</button>
+                <button type="button" class="category-option" data-category="Energy"><span>ϟ</span> Energy</button>
+                <button type="button" class="category-option" data-category="Food"><span>♧</span> Food</button>
+                <button type="button" class="category-option" data-category="Shopping"><span>◇</span> Shopping</button>
+              </div>
+              <input type="hidden" id="activityCategory" value="Transport">
+              <label class="field-label" for="activityType">Activity type</label>
+              <select id="activityType" class="field-control"></select>
+              <div class="field-row"><div><label class="field-label" for="activityAmount">Amount</label><input class="field-control" id="activityAmount" type="number" min="0.1" step="0.1" value="5" required></div><div><label class="field-label" for="activityUnit">Unit</label><input class="field-control unit-control" id="activityUnit" value="km" readonly></div></div>
+              <div class="estimate-box"><div><span>ESTIMATED EMISSIONS</span><strong><b id="estimateValue">1.0</b> <small>kg CO₂e</small></strong></div><span class="estimate-leaf">✳</span></div>
+              <button class="primary-btn" type="submit">Save activity <span>→</span></button>
+              <p class="form-footnote">Your entries are saved locally in this browser.</p>
+            </form>
+          </article>
+          <article class="panel factors-panel"><span class="panel-kicker">HOW IT WORKS</span><h3>Simple, transparent estimates.</h3><p>EcoTrack multiplies the amount you enter by an illustrative emission factor for that activity.</p><div class="formula"><span>ACTIVITY AMOUNT</span><b>×</b><span>EMISSION FACTOR</span><b>=</b><span>CO₂e ESTIMATE</span></div><div class="factor-note"><span>ⓘ</span><p>Emission factors are approximate demo values designed for learning and comparison. Real footprints vary by location, energy source, product and travel conditions.</p></div><div class="factor-list"><div><span>Transport</span><b>Distance travelled</b></div><div><span>Energy</span><b>Electricity used</b></div><div><span>Food</span><b>Meal choices</b></div><div><span>Shopping</span><b>Purchase footprint</b></div></div></article>
+        </div>
+      </section>
+
+      <section class="page-section hidden" id="insights">
+        <div class="page-intro"><span class="panel-kicker">LEARN & TAKE ACTION</span><h2>Better habits, <em>better future.</em></h2><p>Small, realistic changes can make a meaningful difference when they become part of everyday life.</p></div>
+        <div class="insight-feature"><div><span class="panel-kicker">YOUR PERSONAL ACTION PLAN</span><h3>Start with the changes<br>you can actually keep.</h3><p>Pick one action this week. Consistency matters more than perfection.</p></div><div class="action-ring">1<span>STEP<br>AT A TIME</span></div></div>
+        <div class="tips-grid">
+          <article class="tip-card"><div class="tip-card-icon green">↗</div><span>TRANSPORT</span><h3>Make short trips active</h3><p>For nearby destinations, consider walking, cycling or public transport instead of a solo car trip.</p><small>LOW-COST ACTION</small></article>
+          <article class="tip-card"><div class="tip-card-icon yellow">ϟ</div><span>ENERGY</span><h3>Switch off standby power</h3><p>Turn off lights and unplug devices when they are not needed. Check energy-saving settings.</p><small>DAILY HABIT</small></article>
+          <article class="tip-card"><div class="tip-card-icon blue">♧</div><span>FOOD</span><h3>Reduce avoidable food waste</h3><p>Plan meals, store food properly and use leftovers. Wasted food also wastes the resources used to produce it.</p><small>PLAN AHEAD</small></article>
+          <article class="tip-card"><div class="tip-card-icon purple">◇</div><span>SHOPPING</span><h3>Buy thoughtfully</h3><p>Choose durable items, repair when possible and consider second-hand options before buying new.</p><small>BUY LESS, CHOOSE WELL</small></article>
+        </div>
+        <div class="panel goal-panel"><div><span class="panel-kicker">MAKE IT PERSONAL</span><h3>Set a reduction goal</h3><p>Choose how much you want to reduce your estimated footprint over time.</p></div><div class="goal-setting"><input id="goalSlider" type="range" min="5" max="50" step="5" value="20"><strong><span id="goalSliderValue">20</span>%</strong><button class="primary-btn" id="saveGoal">Save goal</button></div></div>
+      </section>
+      <footer class="footer"><span>ECOTRACK © 2026</span><span>Designed for mindful everyday choices <b>✳</b></span><span>HTML · CSS · JAVASCRIPT</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
